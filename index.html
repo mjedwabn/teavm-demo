@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script type="application/javascript">
+        console.log('start');
+        if ('WebAssembly' in window) {
+            fetch('target/generated/wasm/classes.wasm').then(ff => {
+                ff.arrayBuffer().then(buf => {
+                    WebAssembly.instantiate(buf).then(obj => {
+                        console.log(obj.instance.exports.sayHi(42));
+                    });
+                })
+			})
+        }
+	</script>
+</head>
+<body>
+
+</body>
+</html>
